@@ -21,7 +21,9 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
           (l) => state.copyWith(
               isLoading: false, allMoviesSuccessOrFailure: Some(Left(l))),
           (r) => state.copyWith(
-              isLoading: false, allMoviesSuccessOrFailure: Some(Right(r)))));
+              isLoading: false,
+              allMovies: r,
+              allMoviesSuccessOrFailure: Some(Right(r)))));
     });
   }
 }
