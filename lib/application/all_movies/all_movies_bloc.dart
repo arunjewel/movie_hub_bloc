@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_hub_bloc/core/main_failure.dart';
 
 import '../../domain/all_movies/i_all_movies_repo.dart';
@@ -10,6 +13,7 @@ part 'all_movies_event.dart';
 part 'all_movies_state.dart';
 part 'all_movies_bloc.freezed.dart';
 
+@injectable
 class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
   final IAllMoviesRepo allMoviesRepo;
   AllMoviesBloc(this.allMoviesRepo) : super(AllMoviesState.initial()) {
@@ -17,6 +21,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
       emit(state.copyWith(isLoading: true, allMoviesSuccessOrFailure: none()));
       final Either<MainFailure, List<AllMovies>> allMoviesOption =
           await allMoviesRepo.getAllMovies();
+      log(allMoviesOption.toString());
       emit(allMoviesOption.fold(
           (l) => state.copyWith(
               isLoading: false, allMoviesSuccessOrFailure: Some(Left(l))),

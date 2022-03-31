@@ -25,7 +25,7 @@ dependencies:
   dio: ^4.0.5
   injectable: ^1.5.3
   get_it: ^7.2.0
-  injectable_generator: ^1.5.3
+  
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +35,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   freezed: ^1.1.1
   build_runner: ^2.1.8
+  injectable_generator: ^1.5.3
 
 
 flutter:

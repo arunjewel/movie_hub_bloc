@@ -1,33 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_hub_bloc/application/all_movies/all_movies_bloc.dart';
 import 'package:movie_hub_bloc/core/constants.dart';
+
+import '../../widgets/network_loading.dart';
+import '../widgets/home_movies_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<AllMoviesBloc>(context)
+          .add(const AllMoviesEvent.getAllMovies());
+    });
+
     return Scaffold(
       body: Column(children: [
         kWidth,
         Expanded(
-            child: GridView.count(
-          shrinkWrap: true,
-          crossAxisCount: 3,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 2,
-          childAspectRatio: 1 / 1.4,
-          children: List.generate(
-              10,
-              (index) => Container(
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                            image: NetworkImage(
-                              "https://igimages.gumlet.io/tamil/home/beast260322_3.jpg?w=900&dpr=2.0",
-                            ),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(10)),
-                  )),
-        ))
+          child: BlocBuilder<AllMoviesBloc, AllMoviesState>(
+            builder: (context, state) {
+              return state.isLoading
+                  ? const NetworkLoading()
+                  : GridView.builder(
+                      itemCount: state.allMovies.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              childAspectRatio: 2 / 3,
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 5),
+                      itemBuilder: (BuildContext context, int index) {
+                        return HomeMovieImageCard(
+                          imageUrl: state.allMovies[index].largeCoverImage,
+                        );
+                      },
+                    );
+            },
+          ),
+        )
       ]),
     );
   }

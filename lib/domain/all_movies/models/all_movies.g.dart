@@ -7,7 +7,7 @@ part of 'all_movies.dart';
 // **************************************************************************
 
 _$_AllMovies _$$_AllMoviesFromJson(Map<String, dynamic> json) => _$_AllMovies(
-      largeCoverImage: json['large_cover_image'] as String?,
+      largeCoverImage: json['large_cover_image'] as String,
     );
 
 Map<String, dynamic> _$$_AllMoviesToJson(_$_AllMovies instance) =>

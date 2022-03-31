@@ -184,7 +184,7 @@ class _$AllMoviesStateTearOff {
 
   _AllMoviesState call(
       {required bool isLoading,
-      List<AllMovies>? allMovies,
+      required List<AllMovies> allMovies,
       required Option<Either<MainFailure, List<AllMovies>>>
           allMoviesSuccessOrFailure}) {
     return _AllMoviesState(
@@ -201,7 +201,7 @@ const $AllMoviesState = _$AllMoviesStateTearOff();
 /// @nodoc
 mixin _$AllMoviesState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<AllMovies>? get allMovies => throw _privateConstructorUsedError;
+  List<AllMovies> get allMovies => throw _privateConstructorUsedError;
   Option<Either<MainFailure, List<AllMovies>>> get allMoviesSuccessOrFailure =>
       throw _privateConstructorUsedError;
 
@@ -217,7 +217,7 @@ abstract class $AllMoviesStateCopyWith<$Res> {
       _$AllMoviesStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoading,
-      List<AllMovies>? allMovies,
+      List<AllMovies> allMovies,
       Option<Either<MainFailure, List<AllMovies>>> allMoviesSuccessOrFailure});
 }
 
@@ -244,7 +244,7 @@ class _$AllMoviesStateCopyWithImpl<$Res>
       allMovies: allMovies == freezed
           ? _value.allMovies
           : allMovies // ignore: cast_nullable_to_non_nullable
-              as List<AllMovies>?,
+              as List<AllMovies>,
       allMoviesSuccessOrFailure: allMoviesSuccessOrFailure == freezed
           ? _value.allMoviesSuccessOrFailure
           : allMoviesSuccessOrFailure // ignore: cast_nullable_to_non_nullable
@@ -262,7 +262,7 @@ abstract class _$AllMoviesStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoading,
-      List<AllMovies>? allMovies,
+      List<AllMovies> allMovies,
       Option<Either<MainFailure, List<AllMovies>>> allMoviesSuccessOrFailure});
 }
 
@@ -291,7 +291,7 @@ class __$AllMoviesStateCopyWithImpl<$Res>
       allMovies: allMovies == freezed
           ? _value.allMovies
           : allMovies // ignore: cast_nullable_to_non_nullable
-              as List<AllMovies>?,
+              as List<AllMovies>,
       allMoviesSuccessOrFailure: allMoviesSuccessOrFailure == freezed
           ? _value.allMoviesSuccessOrFailure
           : allMoviesSuccessOrFailure // ignore: cast_nullable_to_non_nullable
@@ -305,13 +305,13 @@ class __$AllMoviesStateCopyWithImpl<$Res>
 class _$_AllMoviesState implements _AllMoviesState {
   const _$_AllMoviesState(
       {required this.isLoading,
-      this.allMovies,
+      required this.allMovies,
       required this.allMoviesSuccessOrFailure});
 
   @override
   final bool isLoading;
   @override
-  final List<AllMovies>? allMovies;
+  final List<AllMovies> allMovies;
   @override
   final Option<Either<MainFailure, List<AllMovies>>> allMoviesSuccessOrFailure;
 
@@ -347,14 +347,14 @@ class _$_AllMoviesState implements _AllMoviesState {
 abstract class _AllMoviesState implements AllMoviesState {
   const factory _AllMoviesState(
       {required bool isLoading,
-      List<AllMovies>? allMovies,
+      required List<AllMovies> allMovies,
       required Option<Either<MainFailure, List<AllMovies>>>
           allMoviesSuccessOrFailure}) = _$_AllMoviesState;
 
   @override
   bool get isLoading;
   @override
-  List<AllMovies>? get allMovies;
+  List<AllMovies> get allMovies;
   @override
   Option<Either<MainFailure, List<AllMovies>>> get allMoviesSuccessOrFailure;
   @override

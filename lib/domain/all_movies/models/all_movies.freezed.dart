@@ -23,7 +23,7 @@ class _$AllMoviesTearOff {
   const _$AllMoviesTearOff();
 
   _AllMovies call(
-      {@JsonKey(name: "large_cover_image") required String? largeCoverImage}) {
+      {@JsonKey(name: "large_cover_image") required String largeCoverImage}) {
     return _AllMovies(
       largeCoverImage: largeCoverImage,
     );
@@ -40,7 +40,7 @@ const $AllMovies = _$AllMoviesTearOff();
 /// @nodoc
 mixin _$AllMovies {
   @JsonKey(name: "large_cover_image")
-  String? get largeCoverImage => throw _privateConstructorUsedError;
+  String get largeCoverImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +52,7 @@ mixin _$AllMovies {
 abstract class $AllMoviesCopyWith<$Res> {
   factory $AllMoviesCopyWith(AllMovies value, $Res Function(AllMovies) then) =
       _$AllMoviesCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: "large_cover_image") String? largeCoverImage});
+  $Res call({@JsonKey(name: "large_cover_image") String largeCoverImage});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$AllMoviesCopyWithImpl<$Res> implements $AllMoviesCopyWith<$Res> {
       largeCoverImage: largeCoverImage == freezed
           ? _value.largeCoverImage
           : largeCoverImage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -82,7 +82,7 @@ abstract class _$AllMoviesCopyWith<$Res> implements $AllMoviesCopyWith<$Res> {
           _AllMovies value, $Res Function(_AllMovies) then) =
       __$AllMoviesCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: "large_cover_image") String? largeCoverImage});
+  $Res call({@JsonKey(name: "large_cover_image") String largeCoverImage});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$AllMoviesCopyWithImpl<$Res> extends _$AllMoviesCopyWithImpl<$Res>
       largeCoverImage: largeCoverImage == freezed
           ? _value.largeCoverImage
           : largeCoverImage // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -118,7 +118,7 @@ class _$_AllMovies implements _AllMovies {
 
   @override
   @JsonKey(name: "large_cover_image")
-  final String? largeCoverImage;
+  final String largeCoverImage;
 
   @override
   String toString() {
@@ -152,14 +152,14 @@ class _$_AllMovies implements _AllMovies {
 abstract class _AllMovies implements AllMovies {
   const factory _AllMovies(
       {@JsonKey(name: "large_cover_image")
-          required String? largeCoverImage}) = _$_AllMovies;
+          required String largeCoverImage}) = _$_AllMovies;
 
   factory _AllMovies.fromJson(Map<String, dynamic> json) =
       _$_AllMovies.fromJson;
 
   @override
   @JsonKey(name: "large_cover_image")
-  String? get largeCoverImage;
+  String get largeCoverImage;
   @override
   @JsonKey(ignore: true)
   _$AllMoviesCopyWith<_AllMovies> get copyWith =>
