@@ -6,6 +6,7 @@ import 'package:movie_hub_bloc/application/all_movies/all_movies_bloc.dart';
 import 'package:movie_hub_bloc/core/colors.dart';
 import 'package:movie_hub_bloc/core/di/injectable.dart';
 
+import 'application/search_movies/search_movies_bloc.dart';
 import 'presentation/main_page/screens/main_page.dart';
 
 Future<void> main() async {
@@ -20,7 +21,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => getIt<AllMoviesBloc>())],
+      providers: [
+        BlocProvider(create: (context) => getIt<AllMoviesBloc>()),
+        BlocProvider(create: (context) => getIt<SearchMoviesBloc>()),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

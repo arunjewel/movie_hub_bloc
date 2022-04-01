@@ -3,7 +3,7 @@ import 'package:movie_hub_bloc/core/colors.dart';
 import 'package:movie_hub_bloc/presentation/home_page/screens/home_page.dart';
 import 'package:movie_hub_bloc/presentation/main_page/widgets/bottom_nav_bar.dart';
 import 'package:movie_hub_bloc/presentation/downloads/screens/downloads_home';
-import 'package:movie_hub_bloc/presentation/search/screens/search_home';
+import 'package:movie_hub_bloc/presentation/search/screens/search_home.dart';
 import 'package:movie_hub_bloc/presentation/widgets/app_bar_widget.dart';
 import 'package:movie_hub_bloc/presentation/widgets/app_bar_widget.dart';
 
