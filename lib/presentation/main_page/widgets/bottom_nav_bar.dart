@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub_bloc/core/colors.dart';
+
+import '../../../application/theme/theme_bloc.dart';
 
 ValueNotifier<int> indexChangeNotifier = ValueNotifier(0);
 
@@ -8,6 +11,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).state.themeData;
     return ValueListenableBuilder(
         valueListenable: indexChangeNotifier,
         builder: (context, int newIndex, _) {
@@ -16,10 +20,12 @@ class BottomNavBar extends StatelessWidget {
               onTap: (index) {
                 indexChangeNotifier.value = index;
               },
-              backgroundColor: backgroundColor,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.grey,
-              selectedIconTheme: const IconThemeData(color: Colors.white),
+              backgroundColor: themeData.backgroundColor,
+              selectedItemColor: themeData.bottomAppBarColor,
+              unselectedItemColor: themeData.disabledColor,
+              selectedIconTheme: IconThemeData(
+                color: themeData.bottomAppBarColor,
+              ),
               unselectedIconTheme: const IconThemeData(color: Colors.grey),
               items: const [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),

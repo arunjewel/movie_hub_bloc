@@ -7,8 +7,9 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../application/all_movies/all_movies_bloc.dart' as _i7;
-import '../../application/search_movies/search_movies_bloc.dart' as _i8;
+import '../../application/all_movies/all_movies_bloc.dart' as _i8;
+import '../../application/search_movies/search_movies_bloc.dart' as _i9;
+import '../../application/theme/theme_bloc.dart' as _i7;
 import '../../domain/all_movies/i_all_movies_repo.dart' as _i3;
 import '../../domain/search_movies/search_movies_service.dart' as _i5;
 import '../../infrastructure/all_movies/all_movies_repository.dart' as _i4;
@@ -22,9 +23,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   gh.lazySingleton<_i3.IAllMoviesRepo>(() => _i4.AllMoviesRepository());
   gh.lazySingleton<_i5.SearchMoviesService>(() => _i6.SearchMoviesRepository());
-  gh.factory<_i7.AllMoviesBloc>(
-      () => _i7.AllMoviesBloc(get<_i3.IAllMoviesRepo>()));
-  gh.factory<_i8.SearchMoviesBloc>(() => _i8.SearchMoviesBloc(
+  gh.factory<_i7.ThemeBloc>(() => _i7.ThemeBloc());
+  gh.factory<_i8.AllMoviesBloc>(
+      () => _i8.AllMoviesBloc(get<_i3.IAllMoviesRepo>()));
+  gh.factory<_i9.SearchMoviesBloc>(() => _i9.SearchMoviesBloc(
       searchMoviesService: get<_i5.SearchMoviesService>(),
       iAllMoviesRepo: get<_i3.IAllMoviesRepo>()));
   return get;

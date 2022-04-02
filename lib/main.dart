@@ -7,6 +7,8 @@ import 'package:movie_hub_bloc/core/colors.dart';
 import 'package:movie_hub_bloc/core/di/injectable.dart';
 
 import 'application/search_movies/search_movies_bloc.dart';
+import 'application/theme/theme_bloc.dart';
+import 'core/constants.dart';
 import 'presentation/main_page/screens/main_page.dart';
 
 Future<void> main() async {
@@ -24,18 +26,16 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => getIt<AllMoviesBloc>()),
         BlocProvider(create: (context) => getIt<SearchMoviesBloc>()),
+        BlocProvider(create: (context) => getIt<ThemeBloc>()),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          backgroundColor: backgroundColor,
-          scaffoldBackgroundColor: backgroundColor,
-          textTheme: const TextTheme(
-              bodyText1: TextStyle(color: Colors.white),
-              bodyText2: TextStyle(color: Colors.white)),
-        ),
-        home: MainPage(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: state.isDarkTheme ? darkTheme : lightTheme,
+            home: MainPage(),
+          );
+        },
       ),
     );
   }
