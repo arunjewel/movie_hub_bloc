@@ -24,7 +24,7 @@ class SearchMoviesBloc extends Bloc<SearchMoviesEvent, SearchMoviesState> {
   SearchMoviesBloc(
       {required this.searchMoviesService, required this.iAllMoviesRepo})
       : super(SearchMoviesState.initial()) {
-    on<SearchMoviesEvent>((event, emit) async {
+    on<InitialMovies>((event, emit) async {
       if (state.searchMovies.isNotEmpty) {
         emit(SearchMoviesState(
             isLoading: false,
@@ -34,6 +34,18 @@ class SearchMoviesBloc extends Bloc<SearchMoviesEvent, SearchMoviesState> {
       }
       emit(state.copyWith(
           isLoading: true, searchMoviesSuccessOrFailure: none()));
+      final Either<MainFailure, List<Movie>> searchMoviesOption =
+          await searchMoviesService.searchMovies(keyword: "");
+      log(searchMoviesOption.toString());
+      emit(searchMoviesOption.fold(
+          (l) => state.copyWith(
+              isLoading: false, searchMoviesSuccessOrFailure: Some(Left(l))),
+          (r) => state.copyWith(
+              isLoading: false,
+              searchMovies: r,
+              searchMoviesSuccessOrFailure: Some(Right(r)))));
+    });
+    on<SearchMovies>((event, emit) async {
       final Either<MainFailure, List<Movie>> searchMoviesOption =
           await searchMoviesService.searchMovies(keyword: event.keyword);
       log(searchMoviesOption.toString());

@@ -21,7 +21,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
       emit(state.copyWith(isLoading: true, allMoviesSuccessOrFailure: none()));
       final Either<MainFailure, List<AllMovies>> allMoviesOption =
           await allMoviesRepo.getAllMovies();
-      // log(allMoviesOption.toString());
+      log(allMoviesOption.toString());
       emit(allMoviesOption.fold(
           (l) => state.copyWith(
               isLoading: false, allMoviesSuccessOrFailure: Some(Left(l))),

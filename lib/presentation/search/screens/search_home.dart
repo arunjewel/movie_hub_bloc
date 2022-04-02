@@ -1,43 +1,58 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub_bloc/application/search_movies/search_movies_bloc.dart';
 import 'package:movie_hub_bloc/presentation/widgets/network_loading.dart';
 
+import '../../home_page/widgets/home_movies_card.dart';
+
 class SearchHome extends StatelessWidget {
+
   const SearchHome({Key? key}) : super(key: key);
+final _debouncer = Debouncer(milliseconds: 500);
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       BlocProvider.of<SearchMoviesBloc>(context)
-          .add(const SearchMoviesEvent.searchMovies(keyword: "super"));
+          .add(const SearchMoviesEvent.searchMovies(keyword: ""));
     });
 
     return Scaffold(
       body: SafeArea(
           child: Column(
         children: [
-          // TextField(
-          //   controller: _searchQuery,
-          //   style: new TextStyle(
-          //     color: Colors.white,
-          //   ),
-          //   decoration: new InputDecoration(
-          //       prefixIcon: new Icon(Icons.search, color: Colors.white),
-          //       hintText: "Search...",
-          //       hintStyle: new TextStyle(color: Colors.white)),
-          // ),
+          CupertinoSearchTextField(
+              backgroundColor: Colors.grey,
+              onChanged: ((value) {
+                BlocProvider.of<SearchMoviesBloc>(context)
+                    .add(SearchMovies(keyword: value));
+              }),
+              prefixIcon: const Icon(Icons.search)),
           Expanded(child: BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
             builder: (context, state) {
-              return state.isLoading
-                  ? const NetworkLoading()
-                  : state.searchMovies.isEmpty
-                      ? const Center(child: Text("No movies Fount"))
-                      : ListView.separated(
-                          itemBuilder: (BuildContext context, index) =>
-                              ListTile(leading: Text(state.searchMovies[index].titleLong!)),
-                          separatorBuilder: (cxt, index) => const SizedBox(),
-                          itemCount: state.searchMovies.length);
+              if (state.isLoading) {
+                return const NetworkLoading();
+              } else {
+                if (state.searchMovies.isEmpty) {
+                  return const Center(child: Text("No movies Fount"));
+                } else {
+                  return GridView.builder(
+                    itemCount: state.searchMovies.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 2 / 3,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
+                    itemBuilder: (BuildContext context, int index) {
+                      return HomeMovieImageCard(
+                        imageUrl: state.searchMovies[index].largeCoverImage!,
+                      );
+                    },
+                  );
+                }
+              }
             },
           ))
         ],
