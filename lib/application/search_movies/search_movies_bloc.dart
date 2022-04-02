@@ -36,7 +36,7 @@ class SearchMoviesBloc extends Bloc<SearchMoviesEvent, SearchMoviesState> {
           isLoading: true, searchMoviesSuccessOrFailure: none()));
       final Either<MainFailure, List<Movie>> searchMoviesOption =
           await searchMoviesService.searchMovies(keyword: "");
-      log(searchMoviesOption.toString());
+      // log(searchMoviesOption.toString());
       emit(searchMoviesOption.fold(
           (l) => state.copyWith(
               isLoading: false, searchMoviesSuccessOrFailure: Some(Left(l))),
@@ -48,7 +48,7 @@ class SearchMoviesBloc extends Bloc<SearchMoviesEvent, SearchMoviesState> {
     on<SearchMovies>((event, emit) async {
       final Either<MainFailure, List<Movie>> searchMoviesOption =
           await searchMoviesService.searchMovies(keyword: event.keyword);
-      log(searchMoviesOption.toString());
+      // log(searchMoviesOption.toString());
       emit(searchMoviesOption.fold(
           (l) => state.copyWith(
               isLoading: false, searchMoviesSuccessOrFailure: Some(Left(l))),

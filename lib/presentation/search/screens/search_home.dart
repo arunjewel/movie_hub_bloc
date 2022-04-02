@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub_bloc/application/search_movies/search_movies_bloc.dart';
 import 'package:movie_hub_bloc/presentation/widgets/network_loading.dart';
 
+import '../../../core/debounce.dart';
 import '../../home_page/widgets/home_movies_card.dart';
 
 class SearchHome extends StatelessWidget {
-
-  const SearchHome({Key? key}) : super(key: key);
-final _debouncer = Debouncer(milliseconds: 500);
+  SearchHome({Key? key}) : super(key: key);
+  final _debouncer = Debouncer(milliseconds: 1000);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,10 @@ final _debouncer = Debouncer(milliseconds: 500);
           CupertinoSearchTextField(
               backgroundColor: Colors.grey,
               onChanged: ((value) {
-                BlocProvider.of<SearchMoviesBloc>(context)
-                    .add(SearchMovies(keyword: value));
+                _debouncer.run(() {
+                  BlocProvider.of<SearchMoviesBloc>(context)
+                      .add(SearchMovies(keyword: value));
+                });
               }),
               prefixIcon: const Icon(Icons.search)),
           Expanded(child: BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
