@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub_bloc/application/all_movies/all_movies_bloc.dart';
 import 'package:movie_hub_bloc/core/constants.dart';
 
+import '../../../application/theme/theme_bloc.dart';
 import '../../widgets/network_loading.dart';
 import '../widgets/home_movies_card.dart';
 
@@ -11,12 +12,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).state.themeData;
+
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       BlocProvider.of<AllMoviesBloc>(context)
           .add(const AllMoviesEvent.getAllMovies());
     });
 
     return Scaffold(
+      backgroundColor: themeData.backgroundColor,
       body: Column(children: [
         kWidth,
         Expanded(

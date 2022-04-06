@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_hub_bloc/application/search_movies/search_movies_bloc.dart';
 import 'package:movie_hub_bloc/presentation/widgets/network_loading.dart';
 
+import '../../../application/theme/theme_bloc.dart';
 import '../../../core/debounce.dart';
 import '../../home_page/widgets/home_movies_card.dart';
 
@@ -13,12 +14,15 @@ class SearchHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).state.themeData;
+
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       BlocProvider.of<SearchMoviesBloc>(context)
           .add(const SearchMoviesEvent.searchMovies(keyword: ""));
     });
 
     return Scaffold(
+      backgroundColor: themeData.backgroundColor,
       body: SafeArea(
           child: Column(
         children: [
