@@ -5,7 +5,8 @@ import 'package:movie_hub_bloc/presentation/main_page/widgets/bottom_nav_bar.dar
 import 'package:movie_hub_bloc/presentation/downloads/screens/downloads_home';
 import 'package:movie_hub_bloc/presentation/search/screens/search_home.dart';
 import 'package:movie_hub_bloc/presentation/widgets/app_bar_widget.dart';
-import 'package:movie_hub_bloc/presentation/widgets/app_bar_widget.dart';
+
+import '../widgets/drawer_main.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
@@ -18,11 +19,12 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(50),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(70),
           child: AppbarWidget(
             titleText: "Movies Hub",
           )),
+      endDrawer: DrawerHome(),
       body: SafeArea(
         child: ValueListenableBuilder(
             valueListenable: indexChangeNotifier,

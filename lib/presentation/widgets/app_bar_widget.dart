@@ -11,27 +11,38 @@ class AppbarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDarkTheme = BlocProvider.of<ThemeBloc>(context).state.isDarkTheme;
-    return Row(
-      children: [
-        kWidth,
-        Text(
-          titleText,
-          style: appBarText.copyWith(
-              color: isDarkTheme ? textColorLight : textColorDark),
-        ),
-        const Spacer(),
-        BlocBuilder<ThemeBloc, ThemeState>(
-          builder: (context, state) {
-            return Switch(
-                value: state.isDarkTheme,
-                onChanged: (value) {
-                  BlocProvider.of<ThemeBloc>(context).add(const ChangeTheme());
-                });
-          },
-        ),
-        kWidth,
-        kWidth,
-      ],
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).state.themeData;
+
+    return Container(
+      color: themeData.primaryColorDark,
+      child: Column(
+        children: [
+          kHeight,
+          Row(
+            children: [
+              kWidth,
+              Text(
+                titleText,
+                style: appBarText.copyWith(
+                    color: isDarkTheme ? textColorDark : textColorLight),
+              ),
+              const Spacer(),
+              BlocBuilder<ThemeBloc, ThemeState>(
+                builder: (context, state) {
+                  return Switch(
+                      value: state.isDarkTheme,
+                      onChanged: (value) {
+                        BlocProvider.of<ThemeBloc>(context)
+                            .add(const ChangeTheme());
+                      });
+                },
+              ),
+              kWidth,
+              kWidth,
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
