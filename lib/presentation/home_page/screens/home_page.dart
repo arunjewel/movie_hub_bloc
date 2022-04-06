@@ -37,8 +37,11 @@ class HomePage extends StatelessWidget {
                               crossAxisSpacing: 5,
                               mainAxisSpacing: 5),
                       itemBuilder: (BuildContext context, int index) {
-                        return HomeMovieImageCard(
-                          imageUrl: state.allMovies[index].largeCoverImage,
+                        return GestureDetector(
+                          onTap: () {},
+                          child: HomeMovieImageCard(
+                            imageUrl: state.allMovies[index].largeCoverImage,
+                          ),
                         );
                       },
                     );

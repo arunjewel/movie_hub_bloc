@@ -19,8 +19,8 @@ ThemeData darkTheme = ThemeData(
   primaryColorDark: Colors.black,
   primaryColorLight: Colors.white,
   textTheme: const TextTheme(
-      bodyText1: TextStyle(color: Colors.black),
-      bodyText2: TextStyle(color: Colors.black)),
+      bodyText1: TextStyle(color: Colors.white),
+      bodyText2: TextStyle(color: Colors.white)),
 );
 ThemeData lightTheme = ThemeData(
   primarySwatch: Colors.blue,
