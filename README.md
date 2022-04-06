@@ -1,16 +1,12 @@
 # movie_hub_bloc
 
-A new Flutter project.
+A flutter Application for Searching and Downloading Movies From Torrent.
+(BLOC) 
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+![movieshub](https://user-images.githubusercontent.com/67059146/161914653-424c4408-cbe9-4c28-8073-689a60e66a29.png)
+![movs hib2](https://user-images.githubusercontent.com/67059146/161915878-4c837748-9e92-418a-b20e-55e8b859539f.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
